@@ -28,22 +28,22 @@ public static void main(String[] args){}
     public int[] findTailExhaustive() {
         resetCounters();
         int[] tail = new int[3];
-        int length = 0;
+        tail[2] = length();
 
         for(int i = 0; i < game.length; i++){
             for(int j = 0; j < game[i].length; j++){
                 exhaustiveChecks++;
                 if(game[i][j]){
-                    length++;
                     if((headPosition[0] != i || headPosition[1] != j) && neighbors(i,j) == 1){
                         tail[0] = i;
                         tail[1] = j;
+                        return tail;
                     }
                 }
             }
         }
 
-        tail[2] = length;
+        //tail[2] = length;
 
         return tail;
 
@@ -162,6 +162,19 @@ public int[] neighborRecursive(int r, int c, int[] previous){
             }//downn
        return sum;
         }
+    public int length(){
+        int count = 0;
+
+        for(int i = 0; i < game.length; i++){
+            for(int j = 0; j < game[i].length; j++){
+                if(game[i][j]){
+                    count++;
+                }
+            }
+        }
+
+        return count;
+    }
     public void resetCounters(){
        recursiveChecks=0;
        exhaustiveChecks=0;
@@ -174,4 +187,4 @@ public int[] neighborRecursive(int r, int c, int[] previous){
     }
 
 }
-//done
+//doneee
